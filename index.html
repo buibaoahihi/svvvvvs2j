@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -50,7 +50,7 @@
         }
 
         .font-gaming {
-            font-family: 'Teko', 'Arial Narrow', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
             letter-spacing: .045em;
         }
@@ -58,7 +58,7 @@
         .rules-title,
         .rule-group-title,
         .rules-brand {
-            font-family: 'Teko', 'Arial Narrow', sans-serif !important;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         .rules-title {
@@ -210,7 +210,7 @@
         }
 
         .rules-title {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -.03em;
@@ -326,7 +326,7 @@
         .rule-group-title {
             margin-top: 10px;
             color: #fff;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 15px;
             font-weight: 900;
             line-height: 1.35;
@@ -527,7 +527,7 @@
                 linear-gradient(135deg, #080c18, #090b13 65%, #050811);
             color: #f8fafc;
             padding: 120px 8% 90px;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             position: relative;
         }
         .guide-hero { max-width: 1450px; margin: 0 auto; padding: 0 0 80px; }
@@ -575,6 +575,21 @@
             .guide-card { min-height:270px; }
             .guide-card-top strong { font-size:36px; }
         }
+
+        /* FONT DONG BO TOAN WEBSITE: dung mot font de chu khong bi xoc xech */
+        body,
+        body :not(i):not(i *):not(svg):not(svg *) {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-style: normal !important;
+            letter-spacing: normal !important;
+        }
+
+        /* Font trong cac o nhap va nut bam cung dong bo */
+        button, input, textarea, select {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-style: normal !important;
+            letter-spacing: normal !important;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-brand-blue selection:text-black">
@@ -596,7 +611,7 @@
             <div class="flex items-center space-x-6">
                 <a href="#" class="flex items-center space-x-3 group">
                     <div class="w-10 h-10 overflow-hidden rounded-lg border border-brand-blue/60 shadow-lg shadow-brand-blue/20 group-hover:scale-105 transition-transform flex items-center justify-center bg-black">
-                        <img src="anhnen.png" alt="Logo Nexora" class="w-full h-full object-cover">
+                        <img src="logosv.png" alt="Logo Nexora" class="w-full h-full object-cover">
                     </div>
                     <div class="leading-none">
                         <span class="block font-gaming font-black text-lg tracking-widest text-white">NEXORA</span>
@@ -1122,7 +1137,7 @@
                     <span class="font-bold text-white">GTA V / FiveM</span>
                 </div>
                 <div class="flex justify-between py-2 border-b border-white/5">
-                    <span class="text-gray-400"></span>
+                    <span class="text-gray-400">IP Connect:</span>
                     <span class="font-mono text-brand-blue font-bold">connect.nexorarp.com</span>
                 </div>
                 <div class="flex justify-between py-2 border-b border-white/5">
