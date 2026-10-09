@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexora Roleplay - Server GTA V Roleplay Việt Nam</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#00f0ff',       /* Electric Cyan */
+                            deepblue: '#0066ff',   /* Royal Blue */
+                            darkblue: '#0a1128',
+                            glow: '#00f0ff',
+                            bg: '#050811',
+                            card: '#0b1326',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050811;
+            color: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-gaming {
+            font-family: 'Teko', 'Arial Narrow', sans-serif;
+            font-weight: 700;
+            letter-spacing: .045em;
+        }
+
+        .rules-title,
+        .rule-group-title,
+        .rules-brand {
+            font-family: 'Teko', 'Arial Narrow', sans-serif !important;
+        }
+
+        .rules-title {
+            font-weight: 700 !important;
+            letter-spacing: .025em !important;
+        }
+
+        .hero-bg {
+            background: linear-gradient(180deg, rgba(5, 8, 17, 0.75) 0%, rgba(5, 8, 17, 0.95) 100%),
+                        url('anhnen.png') center/contain no-repeat;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.6), 0 0 45px rgba(0, 240, 255, 0.3);
+        }
+
+        .text-glow-sharp {
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+        }
+
+        .btn-glow {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 35px rgba(0, 240, 255, 0.75);
+            transform: translateY(-2px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050811;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00f0ff;
+            border-radius: 4px;
+        }
+
+        .pulse-online {
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        /* =========================================
+           HIỆU ỨNG CUỘN TRANG HIỆN ĐẠI (SCROLL REVEAL)
+           ========================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+        .reveal-delay-3 { transition-delay: 0.45s; }
+
+        /* =========================================
+           STYLE PHẦN KHÁM PHÁ (EXPLORE CARDS)
+           ========================================= */
+        .explore-card {
+            background-color: #0b1326;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .explore-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.25);
+            border-color: rgba(0, 240, 255, 0.8);
+        }
+
+        /* =========================
+           LUẬT LỆ MODAL STYLE
+           ========================= */
+        .rules-modal {
+            max-width: 1380px !important;
+            width: min(96vw, 1380px) !important;
+            background: #090306 !important;
+            border: 1px solid rgba(0,217,255, .28) !important;
+            border-radius: 18px !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+        }
+
+        .rules-shell {
+            max-height: 90vh;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #00d9ff #10060a;
+        }
+
+        .rules-shell::-webkit-scrollbar { width: 7px; }
+        .rules-shell::-webkit-scrollbar-track { background: #10060a; }
+        .rules-shell::-webkit-scrollbar-thumb {
+            background: #00d9ff;
+            border-radius: 10px;
+        }
+
+        .rules-topbar {
+            padding: 18px 28px 10px;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: rgba(9, 3, 6, .94);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,.05);
+        }
+
+        .rules-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #f21b50;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+        }
+
+        .rules-hero {
+            padding: 34px 30px 24px;
+            border-bottom: 1px solid rgba(0,217,255, .22);
+            background:
+                radial-gradient(circle at 15% 15%, rgba(0,217,255,.08), transparent 34%),
+                linear-gradient(180deg, rgba(20,5,10,.75), rgba(9,3,6,.98));
+        }
+
+        .rules-kicker {
+            color: #00d9ff;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .rules-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -.03em;
+            line-height: .95;
+            font-size: clamp(34px, 5vw, 64px);
+            color: #fff;
+            margin: 0;
+        }
+
+        .rules-title span { color: #00d9ff; }
+
+        .rules-desc {
+            max-width: 760px;
+            margin-top: 16px;
+            color: #b9aeb2;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .rules-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 18px;
+        }
+
+        .rules-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,217,255, .24);
+            background: rgba(0,217,255,.07);
+            color: #eee;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .rules-pill i { color: #00d9ff; }
+
+        .rules-search-wrap {
+            padding: 24px 30px 10px;
+        }
+
+        .rules-search {
+            width: 100%;
+            max-width: 760px;
+            height: 58px;
+            border-radius: 12px;
+            border: 1px solid rgba(0,217,255, .3);
+            background: rgba(13, 5, 9, .92);
+            color: #fff;
+            outline: none;
+            padding: 0 18px 0 48px;
+            font-size: 14px;
+            transition: .2s ease;
+        }
+
+        .rules-search:focus {
+            border-color: #00d9ff;
+            box-shadow: 0 0 0 3px rgba(0,217,255,.08), 0 0 28px rgba(0,217,255,.12);
+        }
+
+        .rules-search::placeholder { color: #76686c; }
+
+        .rules-search-box {
+            position: relative;
+        }
+
+        .rules-search-box i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00d9ff;
+            pointer-events: none;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            padding: 22px 30px 34px;
+        }
+
+        .rule-group {
+            border: 1px solid rgba(0,217,255, .2);
+            background: linear-gradient(180deg, rgba(27,10,16,.94), rgba(16,7,11,.96));
+            border-radius: 13px;
+            overflow: hidden;
+            transition: .25s ease;
+        }
+
+        .rule-group:hover {
+            transform: translateY(-2px);
+            border-color: rgba(0,217,255,.52);
+            box-shadow: 0 14px 40px rgba(0,0,0,.3), 0 0 24px rgba(0,217,255,.06);
+        }
+
+        .rule-group-head {
+            padding: 19px 20px 16px;
+        }
+
+        .rule-group-number {
+            color: #00d9ff;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .rule-group-title {
+            margin-top: 10px;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 15px;
+            font-weight: 900;
+            line-height: 1.35;
+            text-transform: uppercase;
+        }
+
+        .rule-group-desc {
+            margin-top: 10px;
+            color: #a99ca0;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .rule-count {
+            float: right;
+            margin-top: -2px;
+            padding: 5px 8px;
+            border-radius: 5px;
+            border: 1px solid rgba(0,217,255, .22);
+            color: #d7cdd0;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .rule-list {
+            border-top: 1px solid rgba(255,255,255,.07);
+            padding: 8px 20px 13px;
+        }
+
+        .rule-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,.045);
+        }
+
+        .rule-item:last-child { border-bottom: 0; }
+
+        .rule-item i {
+            color: #00d9ff;
+            font-size: 9px;
+            margin-top: 6px;
+            flex: 0 0 auto;
+        }
+
+        .rule-item strong {
+            color: #eee;
+            font-size: 11px;
+            line-height: 1.55;
+        }
+
+        .rule-item span {
+            display: block;
+            color: #807378;
+            font-size: 10px;
+            line-height: 1.55;
+            margin-top: 2px;
+        }
+
+        .rules-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 30px 20px;
+            border-top: 1px solid rgba(255,255,255,.06);
+            color: #756a6e;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .rules-close {
+            border: 1px solid rgba(0,217,255,.35);
+            background: rgba(0,217,255,.1);
+            color: #fff;
+            padding: 9px 14px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            transition: .2s ease;
+        }
+
+        .rules-close:hover {
+            background: #00d9ff;
+            color: #fff;
+        }
+
+        @media (max-width: 900px) {
+            .rules-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 640px) {
+            .rules-topbar { padding: 14px 16px 8px; }
+            .rules-hero { padding: 26px 17px 20px; }
+            .rules-search-wrap { padding: 18px 17px 6px; }
+            .rules-grid { grid-template-columns: 1fr; padding: 16px 17px 24px; }
+            .rules-footer { padding: 12px 17px 16px; }
+            .rules-title { font-size: 36px; }
+        }
+
+        /* =========================================
+           MODERN BLUE RUNNER LED - CHẠY QUANH VIỀN
+           ========================================= */
+        .modern-led-border {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            pointer-events: none;
+        }
+
+        .modern-led-border::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(0, 217, 255, .18);
+            box-shadow:
+                inset 0 0 22px rgba(0, 217, 255, .035),
+                0 0 12px rgba(0, 217, 255, .08);
+        }
+
+        .modern-led-border .led-line {
+            position: absolute;
+            display: block;
+            overflow: hidden;
+            background: rgba(0, 217, 255, .12);
+            box-shadow: 0 0 7px rgba(0, 217, 255, .35);
+        }
+
+        .modern-led-border .led-line::after {
+            content: "";
+            position: absolute;
+            width: 130px;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(0, 217, 255, .35) 20%,
+                #00eaff 50%,
+                rgba(0, 217, 255, .35) 80%,
+                transparent
+            );
+            filter: blur(1px);
+        }
+
+        .modern-led-border .top { left: 0; top: 0; width: 100%; height: 2px; }
+        .modern-led-border .top::after { animation: ledTop 4s linear infinite; }
+
+        .modern-led-border .right { right: 0; top: 0; width: 2px; height: 100%; }
+        .modern-led-border .right::after { width: 100%; height: 130px; animation: ledRight 4s linear infinite; }
+
+        .modern-led-border .bottom { right: 0; bottom: 0; width: 100%; height: 2px; }
+        .modern-led-border .bottom::after { animation: ledBottom 4s linear infinite; }
+
+        .modern-led-border .left { left: 0; bottom: 0; width: 2px; height: 100%; }
+        .modern-led-border .left::after { width: 100%; height: 130px; animation: ledLeft 4s linear infinite; }
+
+        @keyframes ledTop { from { transform: translateX(-140px); } to { transform: translateX(100vw); } }
+        @keyframes ledRight { from { transform: translateY(-140px); } to { transform: translateY(100vh); } }
+        @keyframes ledBottom { from { transform: translateX(140px); } to { transform: translateX(-100vw); } }
+        @keyframes ledLeft { from { transform: translateY(140px); } to { transform: translateY(-100vh); } }
+
+        .modern-led-border .corner {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #b9f8ff;
+            box-shadow:
+                0 0 5px #00eaff,
+                0 0 14px #00d9ff,
+                0 0 30px rgba(0, 217, 255, .75);
+            animation: cornerPulse 1.8s ease-in-out infinite alternate;
+        }
+
+        .modern-led-border .c1 { top: -3px; left: -3px; }
+        .modern-led-border .c2 { top: -3px; right: -3px; animation-delay: .45s; }
+        .modern-led-border .c3 { bottom: -3px; right: -3px; animation-delay: .9s; }
+        .modern-led-border .c4 { bottom: -3px; left: -3px; animation-delay: 1.35s; }
+
+        @keyframes cornerPulse {
+            from { opacity: .45; transform: scale(.75); }
+            to { opacity: 1; transform: scale(1.35); }
+        }
+
+        @media (max-width: 640px) {
+            .modern-led-border::before { filter: drop-shadow(0 0 3px rgba(0,217,255,.7)); }
+            .modern-led-border::after { width: 120px; height: 120px; top: -60px; left: -60px; }
+        }
+
+        /* ================= TRANG HƯỚNG DẪN NEXORA ================= */
+        .guide-page {
+            --guide-blue: #00f0ff;
+            background:
+                radial-gradient(ellipse at 85% 15%, rgba(0,102,255,.12) 0%, transparent 42%),
+                linear-gradient(135deg, #080c18, #090b13 65%, #050811);
+            color: #f8fafc;
+            padding: 120px 8% 90px;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+        }
+        .guide-hero { max-width: 1450px; margin: 0 auto; padding: 0 0 80px; }
+        .guide-label {
+            display:flex; align-items:center; gap:13px; color:#00f0ff;
+            font-size:12px; font-weight:800; letter-spacing:5px; margin-bottom:22px;
+        }
+        .guide-label span { width:34px; height:2px; background:#00f0ff; display:inline-block; box-shadow:0 0 12px #00f0ff80; }
+        .guide-hero h2 { font-size:clamp(38px,5.5vw,76px); line-height:1.08; font-weight:900; letter-spacing:-2px; margin:0 0 25px; }
+        .guide-hero h2 span, .guide-heading h2 span, .guide-video-text h2 span { color:#00f0ff; text-shadow:0 0 24px #00f0ff30; }
+        .guide-hero p { color:#c3c7d1; font-size:16px; line-height:1.9; max-width:700px; }
+        .guide-divider { max-width:1450px; height:1px; margin:0 auto 80px; background:linear-gradient(90deg,transparent,#00f0ff55,transparent); }
+        .guide-process { max-width:1450px; margin:0 auto; }
+        .guide-heading { display:flex; justify-content:space-between; align-items:end; gap:30px; margin-bottom:40px; }
+        .guide-heading h2 { font-size:clamp(26px,3vw,42px); line-height:1.2; font-weight:900; margin:0; }
+        .guide-heading>p { color:#b6bac5; font-size:13px; line-height:1.8; max-width:420px; }
+        .guide-cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px; }
+        .guide-card { min-height:310px; padding:25px; display:flex; flex-direction:column; background:linear-gradient(145deg,#10192a,#090d17); border:1px solid #20364c; border-radius:13px; transition:.25s ease; }
+        .guide-card:hover { transform:translateY(-6px); border-color:#00f0ff; box-shadow:0 12px 35px #00f0ff12; }
+        .guide-card-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; }
+        .guide-icon { width:52px; height:52px; display:flex; align-items:center; justify-content:center; color:#00f0ff; font-size:22px; border:1px solid #00f0ff55; border-radius:12px; background:#00f0ff0c; }
+        .guide-card-top strong { font-size:43px; font-weight:900; color:#f8fafc; }
+        .guide-card h3 { font-size:16px; font-weight:900; margin:0 0 15px; }
+        .guide-card p { color:#b8bdc9; font-size:13px; line-height:1.9; margin:0 0 25px; }
+        .guide-card a { display:inline-flex; align-items:center; gap:12px; margin-top:auto; color:#00f0ff; text-decoration:none; font-size:11px; font-weight:850; letter-spacing:1.2px; transition:.2s ease; }
+        .guide-card a:hover { color:#a5f7ff; gap:17px; }
+        .guide-video-section { max-width:1450px; margin:0 auto 25px; display:grid; grid-template-columns:.85fr 1.15fr; align-items:center; gap:45px; }
+        .guide-video-text h2 { font-size:clamp(28px,3vw,43px); font-weight:900; line-height:1.25; margin:0 0 20px; }
+        .guide-video-text p { color:#c0c4ce; font-size:14px; line-height:1.9; }
+        .guide-video { width:100%; aspect-ratio:16/9; overflow:hidden; border:1px solid #00f0ff55; border-radius:13px; background:#05070b; box-shadow:0 0 35px #00f0ff12; }
+        .guide-video iframe { width:100%; height:100%; border:0; }
+
+        @media(max-width:1050px) {
+            .guide-cards { grid-template-columns:repeat(2,minmax(0,1fr)); }
+            .guide-heading { align-items:flex-start; flex-direction:column; }
+            .guide-video-section { grid-template-columns:1fr; gap:25px; }
+        }
+        @media(max-width:600px) {
+            .guide-page { padding:100px 5% 60px; }
+            .guide-hero { padding-bottom:50px; }
+            .guide-hero h2 { letter-spacing:-1px; }
+            .guide-hero p { font-size:14px; }
+            .guide-divider { margin-bottom:50px; }
+            .guide-cards { grid-template-columns:1fr; }
+            .guide-card { min-height:270px; }
+            .guide-card-top strong { font-size:36px; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-blue selection:text-black">
+    <!-- LED xanh chạy liên tục quanh 4 cạnh website -->
+    <div class="modern-led-border" aria-hidden="true">
+        <span class="led-line top"></span>
+        <span class="led-line right"></span>
+        <span class="led-line bottom"></span>
+        <span class="led-line left"></span>
+        <span class="corner c1"></span>
+        <span class="corner c2"></span>
+        <span class="corner c3"></span>
+        <span class="corner c4"></span>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md border-b border-brand-blue/20 px-4 lg:px-8 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-6">
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 overflow-hidden rounded-lg border border-brand-blue/60 shadow-lg shadow-brand-blue/20 group-hover:scale-105 transition-transform flex items-center justify-center bg-black">
+                        <img src="anhnen.png" alt="Logo Nexora" class="w-full h-full object-cover">
+                    </div>
+                    <div class="leading-none">
+                        <span class="block font-gaming font-black text-lg tracking-widest text-white">NEXORA</span>
+                        <span class="block font-gaming text-[9px] font-extrabold tracking-[0.25em] text-brand-blue">ROLEPLAY</span>
+                    </div>
+                </a>
+
+                <div class="hidden xl:flex items-center space-x-3 text-xs font-semibold">
+                    <div class="flex items-center space-x-2 bg-black/40 border border-white/10 rounded-full px-3 py-1.5">
+                        <span class="text-xs">🇻🇳</span>
+                        <span class="tracking-wider uppercase text-gray-300">VIETNAM</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-black/40 border border-white/10 rounded-full px-3 py-1.5">
+                        <span class="w-2.5 h-2.5 bg-green-500 rounded-full pulse-online"></span>
+                        <span class="text-gray-300">SERVER STATUS: <span class="text-green-400 font-bold" id="online-count">314 ONLINE</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-bold uppercase tracking-widest">
+                <a href="#kham-pha" class="text-gray-300 hover:text-brand-blue transition-colors">KHÁM PHÁ</a>
+                <a href="#huong-dan" class="text-gray-300 hover:text-brand-blue transition-colors">HƯỚNG DẪN</a>
+                <a href="#luat-le" onclick="openModal('modal-rules')" class="text-gray-300 hover:text-brand-blue transition-colors">LUẬT LỆ</a>
+                <a href="#thong-tin" onclick="openModal('modal-info')" class="text-gray-300 hover:text-brand-blue transition-colors">THÔNG TIN MÁY CHỦ</a>
+            </nav>
+
+        
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-card border-b border-white/10 mt-3 p-4 rounded-xl flex-col space-y-3 font-semibold text-sm">
+            <a href="#kham-pha" class="hover:text-brand-blue py-1">KHÁM PHÁ</a>
+            <a href="#huong-dan" class="hover:text-brand-blue py-1">HƯỚNG DẪN WL</a>
+            <a href="#" onclick="openModal('modal-rules')" class="hover:text-brand-blue py-1">LUẬT LỆ</a>
+            <a href="#" onclick="openModal('modal-info')" class="hover:text-brand-blue py-1">THÔNG TIN MÁY CHỦ</a>
+            <div class="pt-2 border-t border-white/10 flex items-center justify-between text-xs">
+                <span>Trạng thái: <strong class="text-green-400">314 Online</strong></span>
+                <span>🇻🇳 Server Việt Nam</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Hero Section -->
+    <main class="relative hero-bg min-h-screen flex flex-col justify-center items-center text-center px-4 pt-24 pb-12">
+        <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center reveal">
+            <div class="flex items-center space-x-3 text-brand-blue font-bold text-xs sm:text-sm tracking-[0.3em] uppercase mb-6">
+                <span class="w-8 h-[2px] bg-brand-blue/80"></span>
+                <span>MÁY CHỦ ROLEPLAY FIVEM</span>
+                <span class="w-8 h-[2px] bg-brand-blue/80"></span>
+            </div>
+
+            <h1 class="font-gaming font-black uppercase tracking-wider leading-none mb-6">
+                <span class="block text-5xl sm:text-7xl lg:text-8xl text-white drop-shadow-md mb-2">NEXORA</span>
+                <span class="block text-4xl sm:text-6xl lg:text-7xl text-brand-blue text-glow">ROLEPLAY</span>
+            </h1>
+
+            <p class="text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl font-medium tracking-wide uppercase leading-relaxed mb-10 px-2">
+                MÁY CHỦ GTA V ROLEPLAY DÀNH CHO CỘNG ĐỒNG VIỆT NAM,<br class="hidden sm:block">
+                NƠI CÂU CHUYỆN NHẬP VAI CỦA BẠN BẮT ĐẦU.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mb-8">
+                <button onclick="connectServer()" class="w-full sm:w-auto min-w-[200px] bg-brand-blue hover:bg-cyan-300 text-black font-extrabold text-sm tracking-wider uppercase py-4 px-8 rounded-xl btn-glow transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-play"></i>
+                    <span>KẾT NỐI NGAY</span>
+                </button>
+                <button onclick="openModal('modal-info')" class="w-full sm:w-auto min-w-[200px] border border-white/20 hover:border-brand-blue bg-black/40 hover:bg-black/60 text-white font-bold text-sm tracking-wider uppercase py-4 px-8 rounded-xl transition-all">
+                    TÌM HIỂU THÊM
+                </button>
+            </div>
+
+            <button onclick="openModal('modal-guide')" class="inline-flex items-center space-x-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-gray-300 hover:text-brand-blue transition-colors group">
+                <i class="fa-regular fa-circle-question text-brand-blue group-hover:rotate-12 transition-transform"></i>
+                <span class="underline underline-offset-4 decoration-brand-blue/50 group-hover:decoration-brand-blue">
+                    LẦN ĐẦU ĐĂNG KÝ? XEM HƯỚNG DẪN WL
+                </span>
+            </button>
+        </div>
+
+        <!-- Scroll down indicator -->
+        <a href="#kham-pha" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 text-[10px] font-bold tracking-[0.2em] uppercase animate-bounce cursor-pointer group hover:text-brand-blue transition-colors">
+            <span class="mb-1">CUỘN XUỐNG XEM THÊM</span>
+            <i class="fa-solid fa-chevron-down text-brand-blue text-xs"></i>
+        </a>
+    </main>
+
+    <!-- SECTION 1: KHÁM PHÁ NEXORA RP (XUẤT HIỆN TRỰC TIẾP TRÊN TRANG CHÍNH KHI LƯỚT XUỐNG) -->
+    <section id="kham-pha" class="py-24 px-4 bg-[#050811] relative border-t border-brand-blue/10">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Header Tiêu đề Khám phá -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="font-gaming text-4xl sm:text-6xl font-black uppercase tracking-wider text-white mb-4">
+                    KHÁM PHÁ <span class="text-brand-blue text-glow">NEXORA RP</span>
+                </h2>
+                <p class="text-gray-300 text-sm sm:text-base font-medium leading-relaxed">
+                    Đắm mình trong một thế giới nhập vai chân thực, nơi bạn có thể trải nghiệm cuộc sống thành phố, xây dựng sự nghiệp, bảo vệ công lý, tham gia những cuộc đua nghẹt thở hoặc viết nên câu chuyện của riêng mình trong thế giới ngầm đầy bí ẩn.
+                </p>
+            </div>
+
+            <!-- Khối Bố cục Grid 3 Cột Card -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- CỘT BÊN TRÁI (2 Card nhỏ) -->
+                <div class="flex flex-col gap-6 reveal reveal-delay-1">
+                    <!-- Card 1: Nghề nghiệp -->
+                    <div class="explore-card group relative h-64 rounded-2xl overflow-hidden border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80" alt="Nghề nghiệp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                        <div class="absolute bottom-5 left-5 right-5 z-10">
+                            <span class="inline-block text-[11px] font-extrabold uppercase tracking-widest text-brand-blue mb-1">• NGHỀ NGHIỆP</span>
+                            <h3 class="font-gaming text-xl font-bold uppercase text-white tracking-wide">CƠ CHẾ NGHỀ NGHIỆP ĐA DẠNG</h3>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Lực lượng chức năng -->
+                    <div class="explore-card group relative h-64 rounded-2xl overflow-hidden border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80" alt="Thi hành pháp luật" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                        <div class="absolute bottom-5 left-5 right-5 z-10">
+                            <span class="inline-block text-[11px] font-extrabold uppercase tracking-widest text-brand-blue mb-1">• LỰC LƯỢNG CHỨC NĂNG</span>
+                            <h3 class="font-gaming text-xl font-bold uppercase text-white tracking-wide">LSPD & EMS CHUYÊN NGHIỆP</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CỘT GIỮA (Card Nổi Bật - FEATURED) -->
+                <div class="reveal reveal-delay-2">
+                    <div class="explore-card group relative min-h-[536px] h-full rounded-2xl overflow-hidden border border-brand-blue/50 flex flex-col justify-end">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1000&q=80" alt="Không Pay To Win" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        
+                        <!-- Tag FEATURED -->
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="bg-brand-blue text-black font-gaming font-black text-xs uppercase px-3 py-1 rounded-md shadow-md tracking-wider">FEATURED</span>
+                        </div>
+
+                        <!-- Nội dung Feature -->
+                        <div class="relative z-10 p-6 sm:p-8">
+                            <span class="inline-block text-xs font-extrabold uppercase tracking-widest text-brand-blue mb-2">• CÔNG BẰNG</span>
+                            <h3 class="font-gaming text-3xl sm:text-4xl font-black uppercase text-white tracking-wide mb-3">KHÔNG PAY TO WIN</h3>
+                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed font-normal">
+                                NEXORA RP đề cao sự công bằng trong mọi khía cạnh của trò chơi. Chúng tôi khẳng định không có vật phẩm nạp tiền nào mang lại lợi thế chiến đấu hoặc phá vỡ cân bằng nhập vai.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CỘT BÊN PHẢI (2 Card nhỏ) -->
+                <div class="flex flex-col gap-6 reveal reveal-delay-3">
+                    <!-- Card 3: Thế giới ngầm -->
+                    <div class="explore-card group relative h-64 rounded-2xl overflow-hidden border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80" alt="Thế giới ngầm" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                        <div class="absolute bottom-5 left-5 right-5 z-10">
+                            <span class="inline-block text-[11px] font-extrabold uppercase tracking-widest text-brand-blue mb-1">• THẾ GIỚI NGẦM</span>
+                            <h3 class="font-gaming text-xl font-bold uppercase text-white tracking-wide">HOẠT ĐỘNG TỘI PHẠM ĐẶC SẮC</h3>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Phương tiện Custom -->
+                    <div class="explore-card group relative h-64 rounded-2xl overflow-hidden border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80" alt="Phương tiện" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                        <div class="absolute bottom-5 left-5 right-5 z-10">
+                            <span class="inline-block text-[11px] font-extrabold uppercase tracking-widest text-brand-blue mb-1">• PHƯƠNG TIỆN</span>
+                            <h3 class="font-gaming text-xl font-bold uppercase text-white tracking-wide">XE CUSTOM & ĐỘ XE ĐA DẠNG</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: HƯỚNG DẪN VÀO GAME (GUIDE SECTION) -->
+    <section id="huong-dan" class="guide-page">
+        <div class="guide-hero reveal">
+            <div class="guide-label"><span></span> HƯỚNG DẪN VÀO GAME</div>
+            <h2>BẮT ĐẦU CUỘC SỐNG<br>TẠI <span>NEXORA RP</span></h2>
+            <p>Làm theo từng bước bên dưới để chuẩn bị tài khoản, cài FiveM, hoàn thành Whitelist và vào thành phố với trạng thái sẵn sàng nhập vai.</p>
+        </div>
+
+        <div class="guide-divider"></div>
+
+        <div class="guide-process">
+            <div class="guide-heading reveal">
+                <div>
+                    <div class="guide-label"><span></span> QUY TRÌNH</div>
+                    <h2>VÀO SERVER TRONG <span>4 BƯỚC</span></h2>
+                </div>
+                <p>Đi theo đúng thứ tự để tránh thiếu Whitelist, lỗi voice hoặc không tìm thấy server khi mở FiveM.</p>
+            </div>
+
+            <div class="guide-cards">
+                <article class="guide-card reveal reveal-delay-1">
+                    <div class="guide-card-top"><div class="guide-icon"><i class="fa-brands fa-discord"></i></div><strong>01</strong></div>
+                    <h3>THAM GIA DISCORD</h3>
+                    <p>Tham gia cộng đồng NEXORA RP để theo dõi thông báo, nhận hỗ trợ và cập nhật tình trạng đăng ký Whitelist.</p>
+                    <a href="https://discord.gg/QEY5Z5RvB" target="_blank" rel="noopener noreferrer">THAM GIA DISCORD <i class="fa-solid fa-chevron-right"></i></a>
+                </article>
+
+                <article class="guide-card reveal reveal-delay-2">
+                    <div class="guide-card-top"><div class="guide-icon"><i class="fa-solid fa-download"></i></div><strong>02</strong></div>
+                    <h3>CÀI GTA V & FIVEM</h3>
+                    <p>Chuẩn bị bản GTA V hợp lệ, cài đặt FiveM và đăng nhập tài khoản cần thiết để tham gia thành phố.</p>
+                    <a href="https://fivem.net/" target="_blank" rel="noopener noreferrer">TẢI FIVEM <i class="fa-solid fa-chevron-right"></i></a>
+                </article>
+
+                <article class="guide-card reveal reveal-delay-3">
+                    <div class="guide-card-top"><div class="guide-icon"><i class="fa-regular fa-clipboard"></i></div><strong>03</strong></div>
+                    <h3>ĐỌC LUẬT & WHITELIST</h3>
+                    <p>Đọc kỹ luật server, tìm hiểu các khái niệm Roleplay và hoàn thành quy trình Whitelist theo hướng dẫn.</p>
+                    <a href="https://discord.gg/QEY5Z5RvB" onclick="openModal('modal-guide'); return false;">XEM HƯỚNG DẪN WL <i class="fa-solid fa-chevron-right"></i></a>
+                </article>
+
+                <article class="guide-card reveal reveal-delay-3">
+                    <div class="guide-card-top"><div class="guide-icon"><i class="fa-solid fa-play"></i></div><strong>04</strong></div>
+                    <h3>VÀO GAME</h3>
+                    <p>Mở FiveM, tìm NEXORA ROLEPLAY và kết nối máy chủ để bắt đầu hành trình nhập vai của bạn.</p>
+                    <a href="#" onclick="connectServer(); return false;">KẾT NỐI SERVER <i class="fa-solid fa-chevron-right"></i></a>
+                </article>
+            </div>
+        </div>
+
+        <div class="guide-divider" style="margin-top:80px;"></div>
+
+        <div class="guide-video-section reveal">
+            <div class="guide-video-text">
+                <div class="guide-label"><span></span> WHITELIST TUTORIAL</div>
+                <h2>VIDEO HƯỚNG DẪN <span>ĐĂNG KÝ WHITELIST</span></h2>
+                <p>Xem trước các bước cần chuẩn bị trước khi nộp đơn để tránh thiếu thông tin và hoàn thành hồ sơ chính xác.</p>
+            </div>
+            <div class="guide-video">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+                    title="Hướng dẫn đăng ký Whitelist NEXORA ROLEPLAY"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: TẠI SAO CHỌN NEXORA RP (FEATURES) -->
+    <section id="features" class="bg-brand-bg py-24 px-4 border-t border-brand-blue/10 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-gaming text-3xl sm:text-4xl font-extrabold uppercase text-white tracking-wider mb-3">
+                    TẠI SAO CHỌN <span class="text-brand-blue text-glow-sharp">NEXORA RP</span>?
+                </h2>
+                <p class="text-gray-400 text-xs sm:text-sm max-w-xl mx-auto uppercase tracking-wider font-medium">Trải nghiệm thế giới nhập vai đỉnh cao với hệ thống tối ưu và cộng đồng văn minh.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-brand-card p-8 rounded-2xl border border-white/5 hover:border-brand-blue/50 transition-all hover:-translate-y-1 shadow-lg group reveal reveal-delay-1">
+                    <div class="w-14 h-14 bg-brand-blue/10 border border-brand-blue/30 rounded-xl flex items-center justify-center text-brand-blue text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3 class="font-gaming text-lg font-bold uppercase mb-3 text-white">TỐI ƯU FPS CAO</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-normal">
+                        Hệ thống Scripts độc quyền được tối ưu mượt mà, hạn chế tối đa tình trạng giật lag ngay cả ở khu vực đông người.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-brand-card p-8 rounded-2xl border border-white/5 hover:border-brand-blue/50 transition-all hover:-translate-y-1 shadow-lg group reveal reveal-delay-2">
+                    <div class="w-14 h-14 bg-brand-blue/10 border border-brand-blue/30 rounded-xl flex items-center justify-center text-brand-blue text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="font-gaming text-lg font-bold uppercase mb-3 text-white">CỘNG ĐỒNG VĂN MINH</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-normal">
+                        Đội ngũ Staff quản lý trực 24/7, xử lý vi phạm nghiêm túc nhằm đem lại môi trường Roleplay chân thực và công bằng nhất.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-brand-card p-8 rounded-2xl border border-white/5 hover:border-brand-blue/50 transition-all hover:-translate-y-1 shadow-lg group reveal reveal-delay-3">
+                    <div class="w-14 h-14 bg-brand-blue/10 border border-brand-blue/30 rounded-xl flex items-center justify-center text-brand-blue text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h3 class="font-gaming text-lg font-bold uppercase mb-3 text-white">NGHỀ NGHIỆP ĐA DẠNG</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-normal">
+                        Hàng chục công việc hợp pháp và bất hợp pháp phong phú. Hệ thống Bác sĩ (EMS), Cảnh sát (LSPD) chuyên nghiệp.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 py-8 px-4 text-center text-xs text-gray-500 uppercase tracking-widest font-semibold">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <p>&copy; 2026 <span class="font-gaming text-brand-blue font-bold">NEXORA ROLEPLAY</span>. ALL RIGHTS RESERVED.</p>
+            </div>
+            <div class="flex space-x-6 text-sm">
+                <a href="#" class="hover:text-brand-blue transition-colors"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" class="hover:text-brand-blue transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-brand-blue transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="hover:text-brand-blue transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL POPUPS -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+        
+        <!-- Rules Modal (Tất cả 6 nhóm luật đầy đủ chi tiết) -->
+        <div id="modal-rules" class="modal-content rules-modal hidden">
+            <div class="rules-shell">
+
+                <div class="rules-topbar">
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="rules-brand">
+                            <i class="fa-solid fa-book-open"></i>
+                            SERVER PROTOCOL
+                        </div>
+                        <button onclick="closeModal()" class="text-gray-400 hover:text-white p-2 transition-colors" aria-label="Đóng">
+                            <i class="fa-solid fa-xmark text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="rules-hero">
+                    <div class="rules-kicker"><i class="fa-solid fa-bolt mr-1"></i> NEXORA ROLEPLAY</div>
+                    <h3 class="rules-title">Bộ Luật <span>NEXORA</span></h3>
+                    <p class="rules-desc">
+                        Chọn một nhóm luật để đọc nội dung chi tiết. Mỗi người chơi có trách nhiệm nắm rõ toàn bộ quy định trước khi tham gia máy chủ.
+                    </p>
+
+                    <div class="rules-meta">
+                        <div class="rules-pill"><i class="fa-solid fa-book"></i><span>6 nhóm luật</span></div>
+                        <div class="rules-pill"><i class="fa-solid fa-shield-halved"></i><span>Cập nhật thường xuyên</span></div>
+                        <div class="rules-pill"><i class="fa-solid fa-circle-check"></i><span>Bắt buộc đọc trước khi chơi</span></div>
+                    </div>
+                </div>
+
+                <div class="rules-search-wrap">
+                    <div class="rules-search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input id="rules-search" class="rules-search" type="text" placeholder="Tìm nhóm luật hoặc nội dung..." oninput="filterRules(this.value)">
+                    </div>
+                </div>
+
+                <div id="rules-grid" class="rules-grid">
+
+                    <!-- NHÓM 01 -->
+                    <article class="rule-group" data-rule-search="discord cộng đồng giao tiếp spam quảng cáo toxic">
+                        <div class="rule-group-head">
+                            <span class="rule-count">4 điều</span>
+                            <div class="rule-group-number">NHÓM 01</div>
+                            <h4 class="rule-group-title">LUẬT DISCORD</h4>
+                            <p class="rule-group-desc">Quy định giao tiếp, sử dụng kênh và ứng xử nhằm duy trì cộng đồng văn minh, an toàn.</p>
+                        </div>
+                        <div class="rule-list">
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Tôn trọng thành viên</strong><span>Không xúc phạm, gây war hoặc công kích cá nhân.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Không spam / quảng cáo</strong><span>Không spam tin nhắn, link hoặc quảng cáo trái phép.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Dùng đúng kênh</strong><span>Đăng nội dung đúng khu vực được quy định.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Tuân thủ Staff</strong><span>Hợp tác khi được Staff hỗ trợ hoặc xử lý.</span></div></div>
+                        </div>
+                    </article>
+
+                    <!-- NHÓM 02 -->
+                    <article class="rule-group" data-rule-search="streamer livestream youtube twitch content roleplay phát sóng">
+                        <div class="rule-group-head">
+                            <span class="rule-count">4 điều</span>
+                            <div class="rule-group-number">NHÓM 02</div>
+                            <h4 class="rule-group-title">LUẬT STREAMER</h4>
+                            <p class="rule-group-desc">Quy chuẩn dành cho streamer và người sáng tạo nội dung khi phát sóng, chia sẻ và xây dựng hình ảnh server.</p>
+                        </div>
+                        <div class="rule-list">
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Không cố tình phá RP</strong><span>Không tạo tình huống phản cảm chỉ để câu view.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Bảo mật thông tin</strong><span>Không công khai thông tin riêng tư của người chơi.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Không stream sniping</strong><span>Không dùng livestream để lấy lợi thế IC.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Giữ hình ảnh cộng đồng</strong><span>Nội dung phát sóng phải phù hợp với môi trường RP.</span></div></div>
+                        </div>
+                    </article>
+
+                    <!-- NHÓM 03 -->
+                    <article class="rule-group" data-rule-search="ticket hỗ trợ bằng chứng report staff khiếu nại">
+                        <div class="rule-group-head">
+                            <span class="rule-count">4 điều</span>
+                            <div class="rule-group-number">NHÓM 03</div>
+                            <h4 class="rule-group-title">HỆ THỐNG TICKET</h4>
+                            <p class="rule-group-desc">Hướng dẫn tạo ticket, cung cấp bằng chứng và phối hợp với đội ngũ hỗ trợ để xử lý nhanh chóng.</p>
+                        </div>
+                        <div class="rule-list">
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Một vấn đề / một ticket</strong><span>Không tạo nhiều ticket cho cùng một nội dung.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Cung cấp bằng chứng</strong><span>Gửi ảnh, video hoặc thông tin liên quan khi report.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Không ping Staff liên tục</strong><span>Chờ đội ngũ hỗ trợ tiếp nhận và phản hồi.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Không lợi dụng ticket</strong><span>Không spam hoặc tạo ticket giả.</span></div></div>
+                        </div>
+                    </article>
+
+                    <!-- NHÓM 04 -->
+                    <article class="rule-group" data-rule-search="roleplay rp rdm vdm mg pg failrp nlr combat log ic ooc">
+                        <div class="rule-group-head">
+                            <span class="rule-count">8 điều</span>
+                            <div class="rule-group-number">NHÓM 04</div>
+                            <h4 class="rule-group-title">LUẬT ROLEPLAY CƠ BẢN</h4>
+                            <p class="rule-group-desc">Các khái niệm cốt lõi mọi người chơi cần biết để duy trì trải nghiệm nhập vai công bằng.</p>
+                        </div>
+                        <div class="rule-list">
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>RDM</strong><span>Không tấn công hoặc giết người khác khi không có lý do RP hợp lý.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>VDM</strong><span>Không dùng phương tiện làm vũ khí để tông người vô lý.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Metagaming (MG)</strong><span>Không đưa thông tin OOC vào nhân vật IC.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Powergaming (PG)</strong><span>Không ép người khác vào hành động phi thực tế hoặc không có khả năng.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>FailRP</strong><span>Không thực hiện hành động phá vỡ logic nhập vai.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>NLR</strong><span>Khi nhân vật mất tình huống, không tự ý quay lại tiếp tục tình huống cũ.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Combat Log</strong><span>Không thoát game để né tình huống hoặc tránh xử lý.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>IC / OOC</strong><span>Phân biệt rõ thông tin trong nhân vật và ngoài nhân vật.</span></div></div>
+                        </div>
+                    </article>
+
+                    <!-- NHÓM 05 -->
+                    <article class="rule-group" data-rule-search="tội phạm hoạt động phạm pháp cướp ngân hàng cướp người bắt cóc">
+                        <div class="rule-group-head">
+                            <span class="rule-count">5 điều</span>
+                            <div class="rule-group-number">NHÓM 05</div>
+                            <h4 class="rule-group-title">LUẬT HOẠT ĐỘNG TỘI PHẠM</h4>
+                            <p class="rule-group-desc">Quy định khi tham gia các hoạt động phạm pháp nhằm tạo tình huống RP hợp lý và cân bằng.</p>
+                        </div>
+                        <div class="rule-list">
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Có lý do RP</strong><span>Mọi hành vi phạm pháp phải có bối cảnh và mục đích hợp lý.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Không abuse cơ chế</strong><span>Không lợi dụng bug hoặc tính năng để lấy lợi thế.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Tôn trọng giới hạn tình huống</strong><span>Không kéo người chơi ngoài tình huống vào một cách vô lý.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Không phá cân bằng</strong><span>Không lạm dụng vũ khí, phương tiện hoặc số lượng người.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Tuân thủ Staff</strong><span>Chấp hành xử lý sau khi tình huống kết thúc.</span></div></div>
+                        </div>
+                    </article>
+
+                    <!-- NHÓM 06 -->
+                    <article class="rule-group" data-rule-search="cướp giao tranh gang war pd police lspd criminal">
+                        <div class="rule-group-head">
+                            <span class="rule-count">6 điều</span>
+                            <div class="rule-group-number">NHÓM 06</div>
+                            <h4 class="rule-group-title">LUẬT CƯỚP & GIAO TRANH</h4>
+                            <p class="rule-group-desc">Quy tắc dành cho các tình huống cướp, truy đuổi và giao tranh giữa các phe.</p>
+                        </div>
+                        <div class="rule-list">
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Phải có RP mở đầu</strong><span>Không tự ý nổ súng hoặc giao tranh không có diễn biến.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Không RDM theo nhóm</strong><span>Không lợi dụng số đông để vô cớ hạ người khác.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Không lợi dụng safezone</strong><span>Không kéo tình huống chiến đấu vào khu vực an toàn.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Tuân thủ cảnh sát</strong><span>Giữ đúng logic truy đuổi, bắt giữ và xử lý IC.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Không trả thù vô hạn</strong><span>Không quay lại chỉ để tiếp tục một cuộc chiến đã kết thúc.</span></div></div>
+                            <div class="rule-item"><i class="fa-solid fa-chevron-right"></i><div><strong>Ưu tiên chất lượng RP</strong><span>Mục tiêu là tạo tình huống hay, không phải thắng bằng mọi giá.</span></div></div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div id="rules-empty" class="hidden px-8 pb-8 text-center">
+                    <div class="py-10 border border-dashed border-white/10 rounded-xl">
+                        <i class="fa-solid fa-magnifying-glass text-2xl text-gray-600 mb-3"></i>
+                        <p class="text-gray-400 text-sm">Không tìm thấy nhóm luật phù hợp.</p>
+                    </div>
+                </div>
+
+                <div class="rules-footer">
+                    <span><i class="fa-solid fa-shield-halved mr-2 text-red-500"></i> NEXORA ROLEPLAY • SERVER PROTOCOL</span>
+                    <button onclick="closeModal()" class="rules-close">Đóng bảng luật</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guide Modal -->
+        <div id="modal-guide" class="modal-content hidden bg-brand-card border border-brand-blue/30 max-w-2xl w-full rounded-2xl p-6 sm:p-8 max-h-[85vh] overflow-y-auto shadow-2xl">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+                <h3 class="font-gaming text-lg font-extrabold uppercase text-brand-blue flex items-center gap-2">
+                    <i class="fa-solid fa-list-check"></i> HƯỚNG DẪN THAM GIA WHITELIST (WL)
+                </h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white p-1"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="space-y-6 text-sm text-gray-300">
+                <div class="flex items-start space-x-4">
+                    <div class="w-8 h-8 rounded-full bg-brand-blue flex items-center justify-center font-extrabold text-black flex-shrink-0">1</div>
+                    <div>
+                        <h4 class="font-bold text-white uppercase">Tham gia Discord chính thức</h4>
+                        <p class="text-xs text-gray-400 mt-1">Truy cập Discord của Nexora Roleplay và liên kết tài khoản Steam / Discord của bạn.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <div class="w-8 h-8 rounded-full bg-brand-blue flex items-center justify-center font-extrabold text-black flex-shrink-0">2</div>
+                    <div>
+                        <h4 class="font-bold text-white uppercase">Đọc kĩ Luật Server</h4>
+                        <p class="text-xs text-gray-400 mt-1">Nắm rõ kiến thức cơ bản về các khái niệm IC, OOC, RDM, VDM, FailRP...</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <div class="w-8 h-8 rounded-full bg-brand-blue flex items-center justify-center font-extrabold text-black flex-shrink-0">3</div>
+                    <div>
+                        <h4 class="font-bold text-white uppercase">Phỏng vấn Whitelist</h4>
+                        <p class="text-xs text-gray-400 mt-1">Vào kênh phòng chờ phỏng vấn trên Discord để Staff kiểm tra kiến thức và cấp Quyền vào Server.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/10 flex justify-end gap-3">
+                <button onclick="closeModal()" class="bg-gray-800 text-gray-300 font-bold text-xs uppercase px-4 py-2.5 rounded-lg">Đóng</button>
+                <button onclick="loginDiscord()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs uppercase px-6 py-2.5 rounded-lg flex items-center gap-2">
+                    <i class="fa-brands fa-discord"></i> VÀO DISCORD
+                </button>
+            </div>
+        </div>
+
+        <!-- Info Modal -->
+        <div id="modal-info" class="modal-content hidden bg-brand-card border border-brand-blue/30 max-w-xl w-full rounded-2xl p-6 sm:p-8 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+                <h3 class="font-gaming text-lg font-extrabold uppercase text-brand-blue flex items-center gap-2">
+                    <i class="fa-solid fa-server"></i> THÔNG TIN MÁY CHỦ
+                </h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white p-1"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="space-y-3 text-sm text-gray-300">
+                <div class="flex justify-between py-2 border-b border-white/5">
+                    <span class="text-gray-400">Tên Máy Chủ:</span>
+                    <span class="font-bold text-white">NEXORA ROLEPLAY</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-white/5">
+                    <span class="text-gray-400">Nền tảng:</span>
+                    <span class="font-bold text-white">GTA V / FiveM</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-white/5">
+                    <span class="text-gray-400"></span>
+                    <span class="font-mono text-brand-blue font-bold">connect.nexorarp.com</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-white/5">
+                    <span class="text-gray-400">Giới hạn người chơi:</span>
+                    <span class="font-bold text-white">1024 Slots</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-white/5">
+                    <span class="text-gray-400">Vùng miền:</span>
+                    <span class="font-bold text-white">Việt Nam (Ping 5-15ms)</span>
+                </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/10 flex justify-end">
+                <button onclick="connectServer()" class="bg-brand-blue text-black font-extrabold text-xs uppercase px-6 py-2.5 rounded-lg flex items-center gap-2">
+                    <i class="fa-solid fa-play"></i> KẾT NỐI NGAY
+                </button>
+            </div>
+        </div>
+
+        <!-- Shop Modal -->
+        <div id="modal-shop" class="modal-content hidden bg-brand-card border border-brand-blue/30 max-w-3xl w-full rounded-2xl p-6 sm:p-8 max-h-[85vh] overflow-y-auto shadow-2xl">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+                <h3 class="font-gaming text-lg font-extrabold uppercase text-brand-blue flex items-center gap-2">
+                    <i class="fa-solid fa-cart-shopping"></i> CỬA HÀNG MÁY CHỦ NEXORA
+                </h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white p-1"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-black/40 border border-white/10 p-5 rounded-xl text-center flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-400 text-3xl mb-2"><i class="fa-solid fa-crown"></i></div>
+                        <h4 class="font-gaming font-bold text-white uppercase text-sm">GÓI VIP BRONZE</h4>
+                        <p class="text-xs text-gray-400 my-2 font-normal">Nhận thêm 10% tiền công việc, Hàng đợi ưu tiên cấp 1.</p>
+                    </div>
+                    <div class="mt-4">
+                        <span class="block text-brand-blue font-extrabold text-lg mb-3">100.000 VNĐ</span>
+                        <button onclick="buyItem('VIP BRONZE')" class="w-full bg-brand-blue hover:bg-cyan-400 text-black font-extrabold text-xs uppercase py-2 rounded-lg">MUA NGAY</button>
+                    </div>
+                </div>
+
+                <div class="bg-black/40 border border-brand-blue p-5 rounded-xl text-center flex flex-col justify-between relative overflow-hidden">
+                    <span class="absolute top-2 right-2 bg-brand-blue text-[9px] font-extrabold uppercase px-2 py-0.5 rounded text-black font-gaming">HOT</span>
+                    <div>
+                        <div class="text-brand-blue text-3xl mb-2"><i class="fa-solid fa-gem"></i></div>
+                        <h4 class="font-gaming font-bold text-white uppercase text-sm">GÓI VIP GOLD</h4>
+                        <p class="text-xs text-gray-400 my-2 font-normal">Nhận 25% bonus, Xe độc quyền, Hàng đợi ưu tiên cấp cao.</p>
+                    </div>
+                    <div class="mt-4">
+                        <span class="block text-brand-blue font-extrabold text-lg mb-3">300.000 VNĐ</span>
+                        <button onclick="buyItem('VIP GOLD')" class="w-full bg-brand-blue hover:bg-cyan-400 text-black font-extrabold text-xs uppercase py-2 rounded-lg btn-glow">MUA NGAY</button>
+                    </div>
+                </div>
+
+                <div class="bg-black/40 border border-white/10 p-5 rounded-xl text-center flex flex-col justify-between">
+                    <div>
+                        <div class="text-blue-400 text-3xl mb-2"><i class="fa-solid fa-car"></i></div>
+                        <h4 class="font-gaming font-bold text-white uppercase text-sm">XE CUSTOM</h4>
+                        <p class="text-xs text-gray-400 my-2 font-normal">Sở hữu 1 chiếc Supercar độ custom theo ý muốn trong game.</p>
+                    </div>
+                    <div class="mt-4">
+                        <span class="block text-brand-blue font-extrabold text-lg mb-3">500.000 VNĐ</span>
+                        <button onclick="buyItem('XE CUSTOM')" class="w-full bg-brand-blue hover:bg-cyan-400 text-black font-extrabold text-xs uppercase py-2 rounded-lg">MUA NGAY</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-brand-card border border-brand-blue text-white px-6 py-4 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center space-x-3">
+        <i class="fa-solid fa-circle-info text-brand-blue text-lg" id="toast-icon"></i>
+        <span id="toast-message" class="text-sm font-semibold">Thông báo!</span>
+    </div>
+
+    <!-- JavaScript Logic & Animations -->
+    <script>
+        // Toggle Menu Mobile
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        }
+
+        // Modal Handlers
+        function openModal(modalId) {
+            const backdrop = document.getElementById('modal-backdrop');
+            const targetModal = document.getElementById(modalId);
+            const allModals = document.querySelectorAll('.modal-content');
+
+            allModals.forEach(m => m.classList.add('hidden'));
+
+            if (modalId === 'modal-rules') resetRulesSearch();
+
+            backdrop.classList.remove('hidden');
+            setTimeout(() => {
+                backdrop.classList.remove('opacity-0');
+                targetModal.classList.remove('hidden');
+            }, 10);
+        }
+
+        function closeModal() {
+            const backdrop = document.getElementById('modal-backdrop');
+            backdrop.classList.add('opacity-0');
+            setTimeout(() => {
+                backdrop.classList.add('hidden');
+                document.querySelectorAll('.modal-content').forEach(m => m.classList.add('hidden'));
+            }, 300);
+        }
+
+        document.getElementById('modal-backdrop').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Toast Messages
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = message;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        // Action Buttons
+        function connectServer() {
+            showToast('Đang khởi động FiveM và kết nối tới server nexorarp.com...');
+            setTimeout(() => {
+                window.location.href = 'fivem://connect/cfx.re/join/nexorarp';
+            }, 1500);
+        }
+
+        function loginDiscord() {
+            showToast('Đang chuyển hướng tới trang Đăng nhập Discord của Nexora...');
+        }
+
+        function buyItem(itemName) {
+            showToast(`Bạn chọn mua gói ${itemName}. Vui lòng đăng nhập Discord Nexora RP để thanh toán!`);
+        }
+
+        // Rules Search Filter
+        function filterRules(query) {
+            const keyword = (query || '').trim().toLowerCase();
+            const groups = document.querySelectorAll('#rules-grid .rule-group');
+            const empty = document.getElementById('rules-empty');
+            let visible = 0;
+
+            groups.forEach(group => {
+                const text = (group.dataset.ruleSearch || '') + ' ' + group.innerText;
+                const matched = !keyword || text.toLowerCase().includes(keyword);
+                group.classList.toggle('hidden', !matched);
+                if (matched) visible++;
+            });
+
+            empty.classList.toggle('hidden', visible !== 0);
+        }
+
+        function resetRulesSearch() {
+            const input = document.getElementById('rules-search');
+            if (input) {
+                input.value = '';
+                filterRules('');
+            }
+        }
+
+        // Simulated Online Counter Update
+        setInterval(() => {
+            const countEl = document.getElementById('online-count');
+            if (countEl) {
+                const current = parseInt(countEl.innerText);
+                const variation = Math.floor(Math.random() * 5) - 2;
+                const updated = Math.max(300, current + variation);
+                countEl.innerText = updated + ' ONLINE';
+            }
+        }, 5000);
+
+        // HIỆU ỨNG CUỘN TRANG HIỆN ĐẠI (INTERSECTION OBSERVER)
+        document.addEventListener("DOMContentLoaded", function () {
+            const revealElements = document.querySelectorAll(".reveal");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
